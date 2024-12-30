@@ -1,2 +1,4 @@
 # Evelyn
-voice asssistant
+Voice asssistant|Голосовой ассистент
+
+Запуск через main.py, больше ничего трогать не рекомендуется.
