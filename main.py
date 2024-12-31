@@ -35,7 +35,7 @@ try:
         def stop_function(self):
             self.running = False
 
-
+        
         def run_function(self):
             global thread_run
             global count
@@ -52,14 +52,13 @@ try:
                 self.function_running = False
                 self.button.config(text="Нажми меня", image=self.rect)
 
-
+        # функция прослушки микрофона
         def assistant(self):
             global thread_run
             global count
             while self.running:
                 r = sr.Recognizer()
                 with sr.Microphone() as source:
-                    print("Говорите...")
                     count = 1
                     # слушаем голос с микрофона
                     audio = r.listen(source)
@@ -67,18 +66,16 @@ try:
                         try:
                             # распознаем слова
                             text = r.recognize_google(audio, language="ru-RU") # type: ignore
-                            print("Вы сказали:", text)
                             self.check_com(text)
                         except sr.UnknownValueError:
                             print("Не удалось распознать слова")
                         except sr.RequestError as e:
                             print("Ошибка:", e)
                     else:
-                        print("Пауза")
                         count = 0
                         break
         
-
+        # проверка наличия услышанного голоса в списке команд
         def check_com(self, text):
             d = {}
             with open(f'{dir_path}\\commands.txt', 'r', encoding='utf-8') as file: 
